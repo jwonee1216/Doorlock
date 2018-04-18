@@ -10,7 +10,7 @@ PWD	:= $(shell pwd)
 default:$(TARGET)
 	$(MAKE) ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- -C $(KDIR) SUBDIRS=$(PWD) modules
 $(TARGET):$(OBJECT)
-	$(CC) -o $@ -static $< 
+	$(CC) -o $@ $<
 $(OBJECT):$(SOURCE)
 	$(CC) -c $< 
 

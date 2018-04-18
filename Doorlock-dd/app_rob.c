@@ -37,11 +37,13 @@ int main(void)
 	int fd;
 	int cont;
 
-	int *readNum;
+	long long int readNum;
 	int ioctlRtnNum = 0;
+	int prevRtnNum;
 	int readRtnNum;
 
-	char passwd[1024];
+
+	char passwd[256];
 	char realpasswd[256];
 	char pwd;
 
@@ -51,7 +53,7 @@ int main(void)
 
 	FILE *fp;
 	int size;
-	char *pswdBuf;
+	char pswdBuf[32];
 
 	//chat S
 	int msg_len;
@@ -126,7 +128,7 @@ int main(void)
 					//signal(SIGINT, signalHandler);
 					while(1){
 						printf("SERVER:");
-						gets(chatMsg);
+						//gets(chatMsg);
 						msg_len=strlen(chatMsg);
 						/*데이터 전송*/
 						write(clnt_sock, chatMsg, msg_len);
@@ -142,100 +144,115 @@ int main(void)
 					/*연결 종료*/
 					close(clnt_sock);
 				}
-			break;
+				break;
 
 			case 'r':
 				//To get present passwd 
-				fp = fopen("/passwd.txt","r");
-				fseek(fp, 0, SEEK_END);
-				size = ftell(fp);
-				pswdBuf = (char*)malloc(size);
-				memset(pswdBuf,0,size);
-				fseek(fp,0,SEEK_SET);
-				fread(pswdBuf,size-1,1,fp);
-				printf("nowpasswd:%s,filesize:%d\n",pswdBuf,size);
+				while(1){
+					fp = fopen("/passwd.txt","r");
+					
+					//fseek(fp, 0, SEEK_END);
+					//size = ftell(fp);
+					//pswdBuf = (char*)malloc(size);
+					memset(pswdBuf,0,size);
+					//fseek(fp,0,SEEK_SET);
+					fgets(pswdBuf,32,fp);
+					//fread(pswdBuf,32,1,fp);
+					printf("nowpasswd:%s,filesize:%d\n",pswdBuf,size);
+					fd = open("/dev/doorlock", O_RDWR);
+					printf("fd = %d\n",fd);
 
-				fd = open("/dev/doorlock", O_RDWR);
-				printf("fd = %d\n",fd);
+					//adNum = (int*)malloc(sizeof(int));
+					
 
-				readNum = (int*)malloc(sizeof(int));
-				readRtnNum = read(fd,readNum,100);
+					readRtnNum = read(fd,&readNum,4);
 
-				printf("read receive data : %d\n",*readNum);
-				printf("read return value : %d\n",readRtnNum);
+					printf("read receive data : %lld\n",readNum);
+					printf("read return value : %d\n",readRtnNum);
 
-				passwd[0] = '\0';
-				realpasswd[0] = '\0';
-				if(*readNum == 10){
-					//outside unlock
-					//LED ON
-					usleep(50000); //To make term otherwise right finished
-					ioctl(fd,flag,2);
-					while(1){
-						usleep(100000);
-						ioctlRtnNum = ioctl(fd,flag,1);
-						int i;
-						char temp = 'A';
+					passwd[0] = '\0';
+					realpasswd[0] = '\0';
+					prevRtnNum = 99;
 
-						if(ioctlRtnNum == 10 || ioctlRtnNum == 12){
-							printf("passwd:%s\n", passwd);
-							for(i = 0 ; i < strlen(passwd); i++){
-								if(passwd[i] != 'A'){
-									if(temp != passwd[i]){
-										printf("temp:%c, passwd:%c\n",temp,passwd[i] );
-										sprintf(realpasswd,"%s%c",realpasswd,passwd[i]);
+					if(readNum == 10){
+						//outside unlock
+						//LED ON
+					//usleep(50000); //To make term otherwise right finished
+						ioctl(fd,flag,2);
+						while(1){
+							//usleep(50000);
+							ioctlRtnNum = ioctl(fd,flag,1);
+
+							int i;
+							char temp = 'A';
+
+							if(ioctlRtnNum == 10 || ioctlRtnNum == 12){
+								printf("passwd:%s\n", passwd);
+								for(i = 0 ; i < strlen(passwd); i++){
+									if(passwd[i] != 'A'){
+										if(temp != passwd[i]){
+											printf("temp:%c, passwd:%c\n",temp,passwd[i] );
+											sprintf(realpasswd,"%s%c",realpasswd,passwd[i]);
+										}
 									}
-								}
-								temp = passwd[i];
-							}	
-							break;	
-						}else{
-							if(ioctlRtnNum == 99){
-								printf("pwd:%d\n", ioctlRtnNum);
-								sprintf(passwd,"%s%c",passwd,'A');
+									temp = passwd[i];
+								}	
+								break;	
 							}else{
-								printf("pwd:%d\n", ioctlRtnNum);
-								sprintf(passwd,"%s%d",passwd,ioctlRtnNum);
-							}
+								if(ioctlRtnNum == 99){
+									if(prevRtnNum != 99){
+										printf("pwd:%d\n", ioctlRtnNum);
+										sprintf(passwd,"%s%c",passwd,'A');
+									}
+								}else{
+									printf("pwd:%d\n", ioctlRtnNum);
+									sprintf(passwd,"%s%d",passwd,ioctlRtnNum);
+								}
+								prevRtnNum = ioctlRtnNum;
 
+							}
 
 						}
 
+						printf("nowPasswd:%s, passwd:%s,sizenp:%d, sizep:%d\n",pswdBuf,realpasswd,size,strlen(realpasswd));
+						if(strcmp(pswdBuf,realpasswd)){
+							printf("WRONG PASSWD\n");
+							ioctl(fd,flag,3);
+							//LED OFF
+						}else{
+							printf("RIGHT PASSWD\n");
+							ioctl(fd,flag,3); //LED OFF
+							//ioctl(fd,flag,4); //unlock
+						}	
+					}else if(readNum == 12){
+						//changigng password by JW
+						fclose(fp);
+						close(fd);	
+						break;
+
+					}else if(readNum == 13){
+						//unlock & TTS by pressing inside btn by YH
+
 					}
 
-					printf("nowPasswd:%s, passwd:%s,sizenp:%d, sizep:%d\n",pswdBuf,realpasswd,size,strlen(realpasswd));
-					if(strcmp(pswdBuf,realpasswd)){
-						printf("WRONG PASSWD\n");
-						ioctl(fd,flag,3);
-						//LED OFF
-					}else{
-						printf("RIGHT PASSWD\n");
-						ioctl(fd,flag,3); //LED OFF
-						//ioctl(fd,flag,4); //unlock
-					}	
-				}else if(*readNum == 12){
-					//changigng password by JW
+					if (fd<0)
+					{   
+						fprintf(stderr,"/dev/doorlock\n");
+						exit(-1);
+					}   
+					else
+						fprintf(stdout,"/dev/doorlock has been detected ... \n");
 
-				}else if(*readNum == 13){
-					//unlock & TTS by pressing inside btn by YH
-
-				}	
+					//if(pswdBuf != NULL)
+						//free(pswdBuf);
+					//if(readNum != NULL)
+					//	free(readNum);
 
 
-				if (fd<0)
-				{   
-					fprintf(stderr,"/dev/doorlock\n");
-					exit(-1);
-				}   
-				else
-					fprintf(stdout,"/dev/doorlock has been detected ... \n");
 
-				free(pswdBuf);
-				free(readNum);
-
-				fclose(fp);
-				close(fd);	
-
+					fclose(fp);
+					close(fd);	
+				}
 				break;
 
 			case 'o':
