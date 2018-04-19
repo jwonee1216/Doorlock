@@ -1,1 +1,1 @@
-cmd_/HomIT/Doorlock-dd/Doorlock_md.ko := arm-linux-gnueabihf-ld -EL -r  -T ./scripts/module-common.lds --build-id  -o /HomIT/Doorlock-dd/Doorlock_md.ko /HomIT/Doorlock-dd/Doorlock_md.o /HomIT/Doorlock-dd/Doorlock_md.mod.o ;  true
+cmd_/HomIT/Jaewon-dd/Doorlock_md.ko := arm-linux-gnueabihf-ld -EL -r  -T ./scripts/module-common.lds --build-id  -o /HomIT/Jaewon-dd/Doorlock_md.ko /HomIT/Jaewon-dd/Doorlock_md.o /HomIT/Jaewon-dd/Doorlock_md.mod.o ;  true

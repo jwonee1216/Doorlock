@@ -13,10 +13,6 @@ int main(void)
 	doorlock_t doorlock;
 	char key;
 	char keys[PASS_SIZE];
-
-#ifdef DEBUG
-	int i;
-#endif 
 	
 	// Initialize.
 	if( init_doorlock(&doorlock) < 0) {
@@ -70,7 +66,7 @@ int main(void)
 			}
 		}
 
-		//sleep(1);
+		usleep(5000);
 	}
 
 	return 0;	

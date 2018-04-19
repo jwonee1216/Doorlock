@@ -1,10 +1,10 @@
 #include <linux/init.h>
 #include <linux/module.h>
 #include <linux/kernel.h>
+
 #include <linux/fs.h>
 #include <linux/device.h>
 #include <linux/unistd.h>
-#include <asm/io.h>
 #include <linux/delay.h>
 #include <linux/timer.h>
 
@@ -13,7 +13,7 @@
 #include <linux/gpio.h>
 #include <linux/uaccess.h>
 
-MODULE_LICENSE("GPL");
+#include <asm/io.h>
 
 /**
 README :
@@ -86,10 +86,18 @@ keypad_irq_handler(int irq, void *dev_id, struct pt_regs *regs)
 	//local_irq_disable(irqNum), local_irq_enable(irqNum) are
 	//normal funcs to control interrupt
 	printk(KERN_WARNING "Doorlock : irq_handler() open, irq:%d\n", irq);
+/*	
+	disable_irq(bcm20_irqnum);
+	disable_irq(bcm27_irqnum);
+*/
 	exeIrqNum	= irq;
-	ev_press	= 1;
+	ev_press	= !ev_press;
 	CLR_GPIO(24);
 	wake_up_interruptible(&key_waitqueue);
+/*	
+	enable_irq(bcm20_irqnum);
+	enable_irq(bcm27_irqnum);
+*/	
 	return IRQ_HANDLED;	// Success
 }
 
@@ -117,7 +125,8 @@ interrupt_init(void)
 	if( request_irq(
 				bcm20_irqnum , 
 				(irq_handler_t)keypad_irq_handler, 
-				IRQF_TRIGGER_FALLING , 
+				//IRQF_TRIGGER_RISING , 
+				IRQF_TRIGGER_RISING , 
 				"BCM20 ITR", 
 				"BCM20IRQ") ) {
 
@@ -127,7 +136,7 @@ interrupt_init(void)
 	if( request_irq(
 				bcm27_irqnum, 
 				(irq_handler_t)keypad_irq_handler,
-				IRQF_TRIGGER_FALLING , 
+				IRQF_TRIGGER_RISING , 
 				"BCM27 ITR",
 				"BCM27IRQ") ) {
 
@@ -174,17 +183,24 @@ doorlock_read (struct file *filp, char *buf, size_t count, loff_t *f_pos)
 	CLR_GPIO(22);
 	CLR_GPIO(23);
 	SET_GPIO(24);
-
+	
+	mdelay(5);
 	exeIrqNum = 0;
+	
 	ev_press = 0;
 	
 	enable_irq(bcm20_irqnum);
 	enable_irq(bcm27_irqnum);
+	
+	mdelay(5);
 
 	wait_event_interruptible(key_waitqueue, ev_press);
+	
+	disable_irq(bcm20_irqnum);
+	disable_irq(bcm27_irqnum);
+	
+	mdelay(5);
 
-	disable_irq(bcm20_irqnum);	
-	disable_irq(bcm27_irqnum);	
 	if(exeIrqNum == bcm20_irqnum ){
 		flag = 10;
 		ret = copy_to_user(buf,&flag,count);
@@ -195,6 +211,7 @@ doorlock_read (struct file *filp, char *buf, size_t count, loff_t *f_pos)
 	}
 	printk(KERN_WARNING "KERNEL SEND DATA IS >> %d\n",flag);
 	printk(KERN_WARNING "KERNEL RECEIVE COUNT IS >> %d\n",count);
+	
 
 	return(count);
 }
@@ -209,7 +226,7 @@ doorlock_ioctl(struct file *file,unsigned int cmd,unsigned long arg)
 				   int i;	// iterator
 				   int num;	// pushed number
 
-				   for(i = 0; i < 4; i++) {
+				   for(i = 1; i <= 4; i++) {
 
 					   //printk(KERN_NOTICE "i = %d\n",i);// HW intialization
 					   num = 99;
@@ -218,19 +235,11 @@ doorlock_ioctl(struct file *file,unsigned int cmd,unsigned long arg)
 					   CLR_GPIO(22);
 					   CLR_GPIO(23);
 					   CLR_GPIO(24);
+
 					   mdelay(5);
-					   if( i == 0){    //output vcc on one by one
-						   SET_GPIO(21);
-					   }
-					   if( i == 1){
-						   SET_GPIO(22);
-					   }
-					   if( i == 2){
-						   SET_GPIO(23);
-					   }
-					   if( i == 3){
-						   SET_GPIO(24);
-					   }
+
+					   SET_GPIO(20+i);
+
 					   mdelay(5);
 
 					   //printk(KERN_NOTICE "GPLEV = %x\n",GPLEV_0);
@@ -339,10 +348,10 @@ doorlock_ioctl(struct file *file,unsigned int cmd,unsigned long arg)
 
 
 struct file_operations doorlock_fops = {
-open			:	doorlock_open,
-					read			:	doorlock_read,
-					unlocked_ioctl	:	doorlock_ioctl,   
-					release			:	doorlock_release
+	open			:	doorlock_open,
+	read			:	doorlock_read,
+	unlocked_ioctl	:	doorlock_ioctl,   
+	release			:	doorlock_release
 };
 
 
@@ -390,6 +399,6 @@ static void __exit doorlock_exit(void)
 
 }
 
-
 module_init(doorlock_init);
 module_exit(doorlock_exit);
+MODULE_LICENSE("GPL");

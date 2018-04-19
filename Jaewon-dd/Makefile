@@ -13,7 +13,7 @@ PWD	:= $(shell pwd)
 default:$(TARGET)
 	$(MAKE) ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- -C $(KDIR) SUBDIRS=$(PWD) modules
 $(TARGET):$(SOURCE) $(OBJECT)
-	$(CC) -o $@ -static $< $(SUB).o -DDEBUG
+	$(CC) -o $@ $< $(SUB).o -DDEBUG
 $(OBJECT):$(SOURCE)
 	$(CC) -c $(SUB).c
 	#$(CC) -c $< $(SUB).o

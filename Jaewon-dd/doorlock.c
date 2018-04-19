@@ -52,7 +52,12 @@ char *get_arr_of_keys(doorlock_t *doorlock, char *keys, char end_key)
 		printf("prev is : %c\n", prev_key);
 
 		while( (keys[ki] = doorlock_get_key(doorlock) ) == 147 
-				 || keys[ki] == prev_key ) usleep(5000);
+				 || keys[ki] == prev_key ) {
+			if( keys[ki] == 147 ) {
+				prev_key = keys[ki];
+			}
+			usleep(5000);
+		}
 
 		printf("key is :  %c\n", keys[ki]);
 		prev_key = keys[ki];

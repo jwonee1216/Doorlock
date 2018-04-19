@@ -1,8 +1,8 @@
-cmd_/HomIT/Doorlock-dd/Doorlock_md.o := arm-linux-gnueabihf-gcc -Wp,-MD,/HomIT/Doorlock-dd/.Doorlock_md.o.d  -nostdinc -isystem /usr/lib/gcc-cross/arm-linux-gnueabihf/7/include -I./arch/arm/include -I./arch/arm/include/generated/uapi -I./arch/arm/include/generated  -I./include -I./arch/arm/include/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -mlittle-endian -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fno-PIE -fno-dwarf2-cfi-asm -fno-omit-frame-pointer -mapcs -mno-sched-prolog -fno-ipa-sra -mabi=aapcs-linux -mno-thumb-interwork -mfpu=vfp -funwind-tables -marm -D__LINUX_ARM_ARCH__=7 -march=armv7-a -msoft-float -Uarm -fno-delete-null-pointer-checks -Wno-frame-address -Wno-format-truncation -Wno-format-overflow -Wno-int-in-bool-context -O2 --param=allow-store-data-races=0 -DCC_HAVE_ASM_GOTO -Wframe-larger-than=1024 -fno-stack-protector -Wno-unused-but-set-variable -Wno-unused-const-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -pg -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fno-stack-check -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Werror=incompatible-pointer-types  -DMODULE  -DKBUILD_BASENAME='"Doorlock_md"'  -DKBUILD_MODNAME='"Doorlock_md"' -c -o /HomIT/Doorlock-dd/.tmp_Doorlock_md.o /HomIT/Doorlock-dd/Doorlock_md.c
+cmd_/HomIT/Jaewon-dd/Doorlock_md.o := arm-linux-gnueabihf-gcc -Wp,-MD,/HomIT/Jaewon-dd/.Doorlock_md.o.d  -nostdinc -isystem /usr/lib/gcc-cross/arm-linux-gnueabihf/7/include -I./arch/arm/include -I./arch/arm/include/generated/uapi -I./arch/arm/include/generated  -I./include -I./arch/arm/include/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -mlittle-endian -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fno-PIE -fno-dwarf2-cfi-asm -fno-omit-frame-pointer -mapcs -mno-sched-prolog -fno-ipa-sra -mabi=aapcs-linux -mno-thumb-interwork -mfpu=vfp -funwind-tables -marm -D__LINUX_ARM_ARCH__=7 -march=armv7-a -msoft-float -Uarm -fno-delete-null-pointer-checks -Wno-frame-address -Wno-format-truncation -Wno-format-overflow -Wno-int-in-bool-context -O2 --param=allow-store-data-races=0 -DCC_HAVE_ASM_GOTO -Wframe-larger-than=1024 -fno-stack-protector -Wno-unused-but-set-variable -Wno-unused-const-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -pg -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fno-stack-check -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Werror=incompatible-pointer-types  -DMODULE  -DKBUILD_BASENAME='"Doorlock_md"'  -DKBUILD_MODNAME='"Doorlock_md"' -c -o /HomIT/Jaewon-dd/.tmp_Doorlock_md.o /HomIT/Jaewon-dd/Doorlock_md.c
 
-source_/HomIT/Doorlock-dd/Doorlock_md.o := /HomIT/Doorlock-dd/Doorlock_md.c
+source_/HomIT/Jaewon-dd/Doorlock_md.o := /HomIT/Jaewon-dd/Doorlock_md.c
 
-deps_/HomIT/Doorlock-dd/Doorlock_md.o := \
+deps_/HomIT/Jaewon-dd/Doorlock_md.o := \
   include/linux/init.h \
     $(wildcard include/config/debug/rodata.h) \
   include/linux/compiler.h \
@@ -688,24 +688,6 @@ deps_/HomIT/Doorlock-dd/Doorlock_md.o := \
     $(wildcard include/config/arm/dma/use/iommu.h) \
     $(wildcard include/config/arch/omap.h) \
   include/linux/pm_wakeup.h \
-  arch/arm/include/asm/io.h \
-    $(wildcard include/config/pci.h) \
-    $(wildcard include/config/need/mach/io/h.h) \
-    $(wildcard include/config/pcmcia/soc/common.h) \
-    $(wildcard include/config/isa.h) \
-    $(wildcard include/config/pccard.h) \
-  include/asm-generic/pci_iomap.h \
-    $(wildcard include/config/no/generic/pci/ioport/map.h) \
-    $(wildcard include/config/generic/pci/iomap.h) \
-  include/xen/xen.h \
-    $(wildcard include/config/xen.h) \
-    $(wildcard include/config/xen/dom0.h) \
-    $(wildcard include/config/xen/pvh.h) \
-  include/asm-generic/io.h \
-    $(wildcard include/config/generic/iomap.h) \
-    $(wildcard include/config/has/ioport/map.h) \
-    $(wildcard include/config/virt/to/bus.h) \
-  include/linux/vmalloc.h \
   include/linux/delay.h \
   arch/arm/include/asm/delay.h \
   include/linux/interrupt.h \
@@ -737,6 +719,24 @@ deps_/HomIT/Doorlock-dd/Doorlock_md.o := \
   include/linux/irqhandler.h \
   include/linux/io.h \
     $(wildcard include/config/have/arch/huge/vmap.h) \
+    $(wildcard include/config/has/ioport/map.h) \
+  arch/arm/include/asm/io.h \
+    $(wildcard include/config/pci.h) \
+    $(wildcard include/config/need/mach/io/h.h) \
+    $(wildcard include/config/pcmcia/soc/common.h) \
+    $(wildcard include/config/isa.h) \
+    $(wildcard include/config/pccard.h) \
+  include/asm-generic/pci_iomap.h \
+    $(wildcard include/config/no/generic/pci/ioport/map.h) \
+    $(wildcard include/config/generic/pci/iomap.h) \
+  include/xen/xen.h \
+    $(wildcard include/config/xen.h) \
+    $(wildcard include/config/xen/dom0.h) \
+    $(wildcard include/config/xen/pvh.h) \
+  include/asm-generic/io.h \
+    $(wildcard include/config/generic/iomap.h) \
+    $(wildcard include/config/virt/to/bus.h) \
+  include/linux/vmalloc.h \
   arch/arm/include/generated/asm/irq_regs.h \
   include/asm-generic/irq_regs.h \
   include/linux/irqdesc.h \
@@ -789,6 +789,6 @@ deps_/HomIT/Doorlock-dd/Doorlock_md.o := \
     $(wildcard include/config/io/36.h) \
     $(wildcard include/config/cpu/cp15/mmu.h) \
 
-/HomIT/Doorlock-dd/Doorlock_md.o: $(deps_/HomIT/Doorlock-dd/Doorlock_md.o)
+/HomIT/Jaewon-dd/Doorlock_md.o: $(deps_/HomIT/Jaewon-dd/Doorlock_md.o)
 
-$(deps_/HomIT/Doorlock-dd/Doorlock_md.o):
+$(deps_/HomIT/Jaewon-dd/Doorlock_md.o):
