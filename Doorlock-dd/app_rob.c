@@ -177,7 +177,7 @@ int main(void)
 					if(readNum == 10){
 						//outside unlock
 						//LED ON
-					//usleep(50000); //To make term otherwise right finished
+						usleep(100000); //To make term otherwise right finished
 						ioctl(fd,flag,2);
 						while(1){
 							//usleep(50000);
@@ -223,7 +223,9 @@ int main(void)
 							printf("RIGHT PASSWD\n");
 							ioctl(fd,flag,3); //LED OFF
 							//ioctl(fd,flag,4); //unlock
-						}	
+						}
+						sleep(2); //otherwise irq handler would happen
+
 					}else if(readNum == 12){
 						//changigng password by JW
 						fclose(fp);

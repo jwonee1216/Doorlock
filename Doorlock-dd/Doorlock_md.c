@@ -176,7 +176,7 @@ doorlock_read (struct file *filp, char *buf, size_t count, loff_t *f_pos)
 {
 	printk(KERN_NOTICE "doorloc_read() opened\n");// HW intialization
 
-	int flag = 0;
+	int flag;
 	int ret = 0;
 	// output only BCM 24
 	CLR_GPIO(21);

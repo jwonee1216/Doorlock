@@ -1,0 +1,1 @@
+cmd_/mnt/RaspBerry/HomIT/Doorlock-dd/Doorlock_md.ko := arm-linux-gnueabihf-ld -EL -r  -T ./scripts/module-common.lds --build-id  -o /mnt/RaspBerry/HomIT/Doorlock-dd/Doorlock_md.ko /mnt/RaspBerry/HomIT/Doorlock-dd/Doorlock_md.o /mnt/RaspBerry/HomIT/Doorlock-dd/Doorlock_md.mod.o ;  true
