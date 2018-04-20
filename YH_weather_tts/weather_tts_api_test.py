@@ -3,12 +3,12 @@
 #																	#
 #	+ 생성된 .mp3파일 실행														#
 #																	#
-# weather api serviceKey : 	"A6sBxUUT73YOy2Jrd9LcOAwVb%2F0isASazPGUG1zV9db8Pj0tHB7xkxT64sfcqB3c1SCVcsUYxDxNxbzhGDaPXw%3D%3D"	#
+# weather api serviceKey : 	"--"	#
 #																	#
 # nx,ny : 61, 125 (서초2동)														#
 #																	#
-# TTS api 			client_id = "SHcFFtXJ01udohfdFR3C"         								#
-#				client_secret = "oyGsWfTipE"										#
+# TTS api 			client_id = "--"         								#
+#				client_secret = "--"										#
 #																	#
 # get_api_date() 	현재 시간 반환,													#
 # get_weather_data() 	현재 시간의 특정 지역(서초2동) 강수확률 반환,									#
@@ -27,7 +27,8 @@ import string
 import sys
 import time
 import os
-#from pygame import mixer
+#from pygame import mixer 
+#mixer.~
 
 def get_api_date() :
 	standard_time = [2, 5, 8, 11, 14, 17, 20, 23]
@@ -51,7 +52,7 @@ def get_api_date() :
 def get_weather_data() :
 	api_date, api_time = get_api_date()
 	url = "http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2/ForecastSpaceData?"
-	key = "serviceKey=" + "A6sBxUUT73YOy2Jrd9LcOAwVb%2F0isASazPGUG1zV9db8Pj0tHB7xkxT64sfcqB3c1SCVcsUYxDxNxbzhGDaPXw%3D%3D" 
+	key = "serviceKey=" + "--" 
 	date = "&base_date=" + api_date
 	time = "&base_time=" + api_time
 	nx = "&nx=61"
@@ -92,8 +93,8 @@ def get_weather_data() :
 #	return passing_data
 
 def get_mp3file(text) :
-	client_id = "SHcFFtXJ01udohfdFR3C"
-	client_secret = "oyGsWfTipE"
+	client_id = "--"
+	client_secret = "--"
 
 	encText = urllib.parse.quote(text)
 	data = "speaker=mijin&speed=0&text=" + encText;
