@@ -8,6 +8,7 @@
 #include <fcntl.h>
 #include <string.h>
 #include <sys/ioctl.h>
+#include <time.h>
 
 #define DL_DD_PATH "/dev/doorlock"
 #define PASS_PATH "/passwd.txt"
@@ -39,4 +40,6 @@ int is_matched_key(doorlock_t *doorlock, char *keys);
 void alter_password(doorlock_t *doorlock, char *keys, int size);
 
 int play_TTSmp3();
+
+int get_Current_time(int move);
 #endif // !DOORLOCK_H_

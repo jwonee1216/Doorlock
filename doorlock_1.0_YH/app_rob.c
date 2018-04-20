@@ -25,6 +25,10 @@ int main(void)
 
 	// Wait key.
 	while(1) {
+		int user_state;
+		//going out -> reset to 1
+		//visit -> reset to 0
+
 		key = doorlock_wait_key(&doorlock);
 		printf("key\t\t\t = %c\n", key);
 		if(key == INSIDE_BTN) {
@@ -35,7 +39,14 @@ int main(void)
 			    printf("failed playing Sound\n");
 			else
 			    printf("played weather_notice.mp3\n");
-
+			
+			//get current time
+			user_state = 1;
+			//going out
+			if(!get_Current_time(user_state))
+					printf("error - get_current_time Fuction");
+			else
+					printf("stored Current time Text file");
 			continue;
 		}
 
