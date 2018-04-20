@@ -27,7 +27,8 @@ import string
 import sys
 import time
 import os
-#from pygame import mixer //mixer.~
+#from pygame import mixer 
+#mixer.~
 
 def get_api_date() :
 	standard_time = [2, 5, 8, 11, 14, 17, 20, 23]
