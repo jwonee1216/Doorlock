@@ -1,2 +1,2 @@
 #!/bin/sh
-omxplayer weather_notice.mp3 &
+omxplayer /HomIT/weather_notice.mp3 &
