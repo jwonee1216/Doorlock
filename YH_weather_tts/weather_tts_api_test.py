@@ -107,7 +107,7 @@ def get_mp3file(text) :
 	if(rescode==200):
 		print("TTS mp3 저장")
 		response_body = response.read()
-		with open('weather_notice.mp3', 'wb') as f:
+		with open('/HomIT/weather_notice.mp3', 'wb') as f:
 			f.write(response_body)
 #			playSound("weather_notice.mp3")
 	else:
