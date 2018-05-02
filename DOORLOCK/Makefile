@@ -8,7 +8,7 @@ SUB =doorlock
 
 obj-m = Doorlock_md.o 
 #KDIR  := /lib/modules/$(shell uname -r)/build
-KDIR  := /mnt/RaspBerry/linux
+KDIR  := /mnt/share/linux
 PWD	:= $(shell pwd)
 default:$(TARGET)
 	$(MAKE) ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- -C $(KDIR) SUBDIRS=$(PWD) modules

@@ -11,7 +11,8 @@ doorlock_t doorlock;
 char key;
 char keys[PASS_SIZE];
 int user_state;
-	
+char log_data[32];
+
 int check(void);
 void alter(void);
 
@@ -36,8 +37,12 @@ int main(void)
 				if( check() ) {
 					play_TTSmp3();	
 					unlock(&doorlock);	
+					
 					user_state = 0;
-					get_Current_time(user_state);
+					strcpy( log_data, get_Current_time(user_state) );
+				//	insert_LOG(log_data);
+				//	system("./tcp_client %s %s", );
+					log_socket(log_data);
 				}
 				break;
 			case '#': 
@@ -48,8 +53,11 @@ int main(void)
 			case 'B': 
 					play_TTSmp3();
 					unlock(&doorlock);
+					
 					user_state = 1;
-					get_Current_time(user_state);
+					strcpy( log_data, get_Current_time(user_state) );
+				//	insert_LOG(log_data);
+					log_socket(log_data);
 			default : break;
 		}
 		sleep(2);

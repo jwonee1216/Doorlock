@@ -10,6 +10,10 @@
 #include <sys/ioctl.h>
 #include <time.h>
 
+#include <sys/socket.h>
+#include <sys/stat.h>
+#include <arpa/inet.h>
+
 #define DL_DD_PATH "/dev/doorlock"
 #define PASS_PATH "/HomIT/passwd.txt"
 #define PASS_SIZE 25
@@ -19,6 +23,8 @@
  
 #define INSIDE_BTN 'B'  // inside_btn
 
+#define TCP_PORT 5100
+#define TCP_SERVER_addr "192.168.7.12"
 
 struct doorlock {
 	int fd;
@@ -43,5 +49,10 @@ void unlock(doorlock_t *);
 
 int play_TTSmp3();
 
-int get_Current_time(int move);
+char *get_Current_time(int);
+
+//void insert_LOG(char *logdata);
+
+int log_socket(char *);
+
 #endif // !DOORLOCK_H_

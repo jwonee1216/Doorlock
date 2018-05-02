@@ -1,8 +1,8 @@
-cmd_/HomIT/merge/HomIT/doorlock_1.0_YH+Time/Doorlock_md.o := arm-linux-gnueabihf-gcc -Wp,-MD,/HomIT/merge/HomIT/doorlock_1.0_YH+Time/.Doorlock_md.o.d  -nostdinc -isystem /usr/lib/gcc-cross/arm-linux-gnueabihf/7/include -I./arch/arm/include -I./arch/arm/include/generated/uapi -I./arch/arm/include/generated  -I./include -I./arch/arm/include/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -mlittle-endian -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fno-PIE -fno-dwarf2-cfi-asm -fno-omit-frame-pointer -mapcs -mno-sched-prolog -fno-ipa-sra -mabi=aapcs-linux -mno-thumb-interwork -mfpu=vfp -funwind-tables -marm -D__LINUX_ARM_ARCH__=7 -march=armv7-a -msoft-float -Uarm -fno-delete-null-pointer-checks -Wno-frame-address -Wno-format-truncation -Wno-format-overflow -Wno-int-in-bool-context -O2 --param=allow-store-data-races=0 -DCC_HAVE_ASM_GOTO -Wframe-larger-than=1024 -fno-stack-protector -Wno-unused-but-set-variable -Wno-unused-const-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -pg -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fno-stack-check -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Werror=incompatible-pointer-types  -DMODULE  -DKBUILD_BASENAME='"Doorlock_md"'  -DKBUILD_MODNAME='"Doorlock_md"' -c -o /HomIT/merge/HomIT/doorlock_1.0_YH+Time/.tmp_Doorlock_md.o /HomIT/merge/HomIT/doorlock_1.0_YH+Time/Doorlock_md.c
+cmd_/mnt/Send/HomIT/DOORLOCK/Doorlock_md.o := arm-linux-gnueabihf-gcc -Wp,-MD,/mnt/Send/HomIT/DOORLOCK/.Doorlock_md.o.d  -nostdinc -isystem /usr/lib/gcc-cross/arm-linux-gnueabihf/5/include -I./arch/arm/include -I./arch/arm/include/generated/uapi -I./arch/arm/include/generated  -I./include -I./arch/arm/include/uapi -I./include/uapi -I./include/generated/uapi -include ./include/linux/kconfig.h -D__KERNEL__ -mlittle-endian -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -fno-PIE -fno-dwarf2-cfi-asm -fno-omit-frame-pointer -mapcs -mno-sched-prolog -fno-ipa-sra -mabi=aapcs-linux -mno-thumb-interwork -mfpu=vfp -funwind-tables -marm -D__LINUX_ARM_ARCH__=7 -march=armv7-a -msoft-float -Uarm -fno-delete-null-pointer-checks -O2 --param=allow-store-data-races=0 -DCC_HAVE_ASM_GOTO -Wframe-larger-than=1024 -fno-stack-protector -Wno-unused-but-set-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -pg -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fno-stack-check -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -Werror=date-time -Werror=incompatible-pointer-types  -DMODULE  -DKBUILD_BASENAME='"Doorlock_md"'  -DKBUILD_MODNAME='"Doorlock_md"' -c -o /mnt/Send/HomIT/DOORLOCK/.tmp_Doorlock_md.o /mnt/Send/HomIT/DOORLOCK/Doorlock_md.c
 
-source_/HomIT/merge/HomIT/doorlock_1.0_YH+Time/Doorlock_md.o := /HomIT/merge/HomIT/doorlock_1.0_YH+Time/Doorlock_md.c
+source_/mnt/Send/HomIT/DOORLOCK/Doorlock_md.o := /mnt/Send/HomIT/DOORLOCK/Doorlock_md.c
 
-deps_/HomIT/merge/HomIT/doorlock_1.0_YH+Time/Doorlock_md.o := \
+deps_/mnt/Send/HomIT/DOORLOCK/Doorlock_md.o := \
   include/linux/init.h \
     $(wildcard include/config/debug/rodata.h) \
   include/linux/compiler.h \
@@ -66,7 +66,7 @@ deps_/HomIT/merge/HomIT/doorlock_1.0_YH+Time/Doorlock_md.o := \
     $(wildcard include/config/mmu.h) \
     $(wildcard include/config/prove/locking.h) \
     $(wildcard include/config/panic/timeout.h) \
-  /usr/lib/gcc-cross/arm-linux-gnueabihf/7/include/stdarg.h \
+  /usr/lib/gcc-cross/arm-linux-gnueabihf/5/include/stdarg.h \
   include/linux/linkage.h \
   include/linux/stringify.h \
   include/linux/export.h \
@@ -789,6 +789,6 @@ deps_/HomIT/merge/HomIT/doorlock_1.0_YH+Time/Doorlock_md.o := \
     $(wildcard include/config/io/36.h) \
     $(wildcard include/config/cpu/cp15/mmu.h) \
 
-/HomIT/merge/HomIT/doorlock_1.0_YH+Time/Doorlock_md.o: $(deps_/HomIT/merge/HomIT/doorlock_1.0_YH+Time/Doorlock_md.o)
+/mnt/Send/HomIT/DOORLOCK/Doorlock_md.o: $(deps_/mnt/Send/HomIT/DOORLOCK/Doorlock_md.o)
 
-$(deps_/HomIT/merge/HomIT/doorlock_1.0_YH+Time/Doorlock_md.o):
+$(deps_/mnt/Send/HomIT/DOORLOCK/Doorlock_md.o):
