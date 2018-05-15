@@ -1,0 +1,82 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+CLIENT	.temp/client.h	2;"	d
+CLIENT	.temp/client.h	6;"	d
+FLAGS	Makefile	/^FLAGS = -pthread -DDEBUG$/;"	m
+INITIALIZE	main.c	9;"	d	file:
+IS_EMPTY	include/queue.h	26;"	d
+IS_MAX	include/queue.h	25;"	d
+LIB_PATH	Makefile	/^LIB_PATH = .\/include$/;"	m
+MASTER_H_	include/master.h	9;"	d
+MSGQ_MAX	src/server.c	49;"	d	file:
+NET_SERVER_H	include/server.h	9;"	d
+PORT	.temp/TEST.c	11;"	d	file:
+PORT	main.c	6;"	d	file:
+QMAX	src/master.c	21;"	d	file:
+QUEUE_H_	include/queue.h	2;"	d
+RUN	main.c	17;"	d	file:
+SRC_PATH	Makefile	/^SRC_PATH = .\/src$/;"	m
+TABLE_MANAGER_H_	.temp/table_manager.h	2;"	d
+TABLE_PATH	main.c	7;"	d	file:
+TAR	Makefile	/^TAR = main$/;"	m
+addr	.temp/client.h	/^	struct sockaddr_in addr;$/;"	m	struct:client	typeref:struct:client::sockaddr_in
+addr_size	.temp/client.h	/^	int addr_size;$/;"	m	struct:client
+address	.temp/TEST.c	/^	struct sockaddr_in	address;	\/\/ 목적지 주소$/;"	m	struct:client	typeref:struct:client::sockaddr_in	file:
+address	include/server.h	/^	struct sockaddr_in	address;			\/\/ 네트워크 주소.$/;"	m	struct:server	typeref:struct:server::sockaddr_in
+client	.temp/TEST.c	/^typedef struct client {$/;"	s	file:
+client	.temp/client.h	/^struct client {$/;"	s
+client_t	.temp/TEST.c	/^} client_t;$/;"	t	typeref:struct:client	file:
+client_t	.temp/client.h	/^typedef struct client client_t;$/;"	t	typeref:struct:client
+client_t	.temp/client.h	/^} client_t;$/;"	v	typeref:struct:client
+cmd	include/queue.h	/^	char cmd;$/;"	m	struct:message
+command_code	.temp/TEST.c	/^	unsigned char	command_code;$/;"	m	struct:message	file:
+data	.temp/TEST.c	/^	char			*data;$/;"	m	struct:message	file:
+dequeue	src/queue.c	/^message_t *dequeue(queue_t *queue)$/;"	f
+dev_ip	include/queue.h	/^	char[20] dev_ip;$/;"	m	struct:message
+device_id	.temp/TEST.c	/^	unsigned char	device_id;$/;"	m	struct:message	file:
+enqueue	src/queue.c	/^void enqueue(queue_t *queue, message_t *msg)$/;"	f
+front	include/queue.h	/^	int front;$/;"	m	struct:queue
+handle_request	src/master.c	/^void handle_request(master_t *master)$/;"	f
+inicli	.temp/client.h	/^void inicli(client_t *cli)$/;"	f
+initialize_master	src/master.c	/^int initialize_master(master_t *master, const int port\/*, const char *table_path*\/)$/;"	f
+initialize_queue	src/queue.c	/^int initialize_queue(queue_t *queue, const int max_size)$/;"	f
+initialize_server	src/server.c	/^int initialize_server(server_t *server, const int port)$/;"	f
+initialize_table_manager	.temp/table_manager.c	/^int initialize_table_manager(table_manager_t *tbm, const char *path)$/;"	f
+lenth_of_address	.temp/TEST.c	/^	socklen_t			lenth_of_address;$/;"	m	struct:client	file:
+lenth_of_address	include/server.h	/^	socklen_t			lenth_of_address;	\/\/ 주소 길이.$/;"	m	struct:server
+main	.temp/TEST.c	/^int main(int argc, char *argv[])$/;"	f
+main	main.c	/^int main(int argc, char *argv[])$/;"	f
+master	include/master.h	/^struct master {$/;"	s
+master_t	include/master.h	/^typedef struct master master_t;$/;"	t	typeref:struct:master
+max_size	include/queue.h	/^	int max_size;$/;"	m	struct:queue
+message	.temp/TEST.c	/^typedef struct message {$/;"	s	file:
+message	.temp/table_manager.h	/^struct message {$/;"	s
+message	include/queue.h	/^struct message {$/;"	s
+message_t	.temp/TEST.c	/^} message_t;$/;"	t	typeref:struct:message	file:
+message_t	.temp/table_manager.h	/^typedef struct message message_t;$/;"	t	typeref:struct:message
+message_t	include/queue.h	/^typedef struct message message_t;$/;"	t	typeref:struct:message
+msg	include/queue.h	/^	message_t **msg;$/;"	m	struct:queue
+on_handle	include/master.h	/^	int			on_handle;$/;"	m	struct:master
+on_receive	include/master.h	/^	int			on_receive;$/;"	m	struct:master
+queue	include/queue.h	/^struct queue {$/;"	s
+queue_t	include/queue.h	/^typedef struct queue queue_t;$/;"	t	typeref:struct:queue
+rear	include/queue.h	/^	int rear;$/;"	m	struct:queue
+receive_message	src/server.c	/^void *receive_message(server_t *server, void *cmd)$/;"	f
+receive_request	src/master.c	/^void receive_request(master_t *master)$/;"	f
+req_queue	include/master.h	/^	queue_t				req_queue;	\/\/ 요청 큐.$/;"	m	struct:master
+respond_cmd	src/master.c	/^void respond_cmd(master)$/;"	f
+run_master	src/master.c	/^int run_master(master_t *master)$/;"	f
+run_server	.temp/client.h	/^void run_server(server_t *server)$/;"	f
+server	include/master.h	/^	server_t			server;		\/\/ 서버.$/;"	m	struct:master
+server	include/server.h	/^struct server {$/;"	s
+server_t	include/server.h	/^typedef struct server server_t;$/;"	t	typeref:struct:server
+sock	.temp/client.h	/^	int sock;$/;"	m	struct:client
+socket	.temp/TEST.c	/^	int					socket;$/;"	m	struct:client	file:
+socket	include/server.h	/^	int					socket;				\/\/ 서버 소켓.	$/;"	m	struct:server
+table_manager	.temp/table_manager.h	/^struct table_manager {$/;"	s
+table_manager_t	.temp/table_manager.h	/^typedef struct table_manager table_manager_t;$/;"	t	typeref:struct:table_manager
+work	.temp/TEST.c	/^void work(server_t *server)$/;"	f
